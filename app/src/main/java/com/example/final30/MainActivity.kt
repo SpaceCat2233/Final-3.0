@@ -3,7 +3,6 @@ package com.example.final30
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -14,7 +13,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final30.RecyclerView.TaskAdapter
@@ -29,8 +27,8 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.activity_main)
 
         val taskInput = findViewById<EditText>(R.id.taskInput)
-        val DescriptionInput = findViewById<EditText>(R.id.DescriptionInput)
         val addTaskButton = findViewById<Button>(R.id.addTaskButton)
+        val descriptionInput = findViewById<EditText>(R.id.DescriptionInput)
         val taskRecyclerView = findViewById<RecyclerView>(R.id.taskRecyclerView)
 
         taskAdapter = TaskAdapter(taskManager.getTasksSortedByName()) {taskId ->
@@ -43,10 +41,11 @@ class MainActivity : ComponentActivity() {
 
         addTaskButton.setOnClickListener{
             val taskName = taskInput.text.toString()
-            val taskDescription = DescriptionInput.text.toString()
+            val description = descriptionInput.text.toString()
             if (taskName.isNotBlank()){
-                taskManager.addTask(taskName, taskDescription)
+                taskManager.addTask(taskName,description)
                 taskInput.text.clear()
+                descriptionInput.text.clear()
                 updateTasks()
             }
         }

@@ -9,7 +9,7 @@ class TaskManager {
     }
 
     fun completeTask(id: Int){
-        tasks.find {it.id == id }?.isCompleted = true
+        tasks.removeIf { it.id == id }
     }
 
     fun getTasksSortedByName(): List<Task> {

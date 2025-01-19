@@ -9,17 +9,16 @@ import androidx.compose.ui.layout.Layout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.final30.R
 import com.example.final30.Task
+import com.example.final30.TaskManager
 
 class TaskAdapter(private val tasks: List<Task>, private val onComplete: (Int) -> Unit) :
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>(){
 
-
-
-        class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-            val taskName: TextView = itemView.findViewById(R.id.taskName)
-            val taskDescription: TextView = itemView.findViewById((R.id.taskDescription))
-            val completeButton: Button = itemView.findViewById(R.id.completeButton)
-        }
+    class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val taskName: TextView = itemView.findViewById(R.id.taskName)
+        val description: TextView = itemView.findViewById(R.id.descriptionOutput)
+        val completeButton: Button = itemView.findViewById(R.id.completeButton)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.task_item,parent,false)
@@ -29,11 +28,10 @@ class TaskAdapter(private val tasks: List<Task>, private val onComplete: (Int) -
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
         holder.taskName.text = task.name
-        holder.taskDescription.text = task.description
+        holder.description.text = task.description
         holder.completeButton.isEnabled = !task.isCompleted
         holder.completeButton.setOnClickListener {
             onComplete(task.id)
-
         }
     }
 
