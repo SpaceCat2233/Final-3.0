@@ -17,6 +17,7 @@ class TaskAdapter(private val tasks: List<Task>, private val onComplete: (Int) -
 
         class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
             val taskName: TextView = itemView.findViewById(R.id.taskName)
+            val taskDescription: TextView = itemView.findViewById((R.id.taskDescription))
             val completeButton: Button = itemView.findViewById(R.id.completeButton)
         }
 
@@ -28,8 +29,12 @@ class TaskAdapter(private val tasks: List<Task>, private val onComplete: (Int) -
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
         holder.taskName.text = task.name
+        holder.taskDescription.text = task.description
         holder.completeButton.isEnabled = !task.isCompleted
-        holder.completeButton.setOnClickListener { onComplete(task.id)}
+        holder.completeButton.setOnClickListener {
+            onComplete(task.id)
+
+        }
     }
 
     override fun getItemCount() = tasks.size

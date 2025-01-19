@@ -10,14 +10,21 @@
         android:id="@+id/taskInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter task name"
+        android:hint="@string/enter_task_name"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/DescriptionInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_description"
         android:minHeight="48dp" />
 
     <Button
         android:id="@+id/addTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add task"/>
+        android:text="@string/add_task"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskRecyclerView"
